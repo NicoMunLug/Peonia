@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti 💐</title>
+<style>
+    body {
+        margin: 0;
+        background: #FFFDF5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: "Georgia", serif;
+    }
+
+    canvas {
+        background: #FFFDF5;
+    }
+</style>
+</head>
+<body>
+
+<canvas id="canvas" width="600" height="800"></canvas>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+// --- COLORES ---
+const pinks = ["#FFD1DC", "#FFB6C1", "#FF69B4", "#FF99AA"];
+const purples = ["#DDA0DD", "#EE82EE", "#BA55D3"];
+const greens = ["#2E8B57", "#228B22"];
+
+// --- TEXTO ---
+const textTop = "Te quiero mi niña,\n\nespero que estas flores te hagan recordar\nsiempre lo mucho que vales.";
+const textBottom =
+"Estas nunca dejarán de existir,\n" +
+"y siempre que te sientas mal\n" +
+"vas a poder venir aquí a verlas\n" +
+"y recordar lo hermosa que eres,\n\n" +
+"así como lo son estas peonías 💐";
+
+// --- UTILIDADES ---
+function random(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// --- TEXTO TYPEWRITER ---
+function typeText(text, x, y, size, callback) {
+    ctx.fillStyle = "#7A4E8A";
+    ctx.font = `italic ${size}px Georgia`;
+    ctx.textAlign = "center";
+
+    const lines = text.split("\n");
+    let line = 0;
+    let char = 0;
+
+    function draw() {
+        if (line >= lines.length) {
+            if (callback) callback();
+            return;
+        }
+
+        ctx.clearRect(0, y - 40, canvas.width, 200);
+
+        for (let i = 0; i < line; i++) {
+            ctx.fillText(lines[i], x, y + i * (size + 6));
+        }
+
+        ctx.fillText(lines[line].slice(0, char), x, y + line * (size + 6));
+        char++;
+
+        if (char > lines[line].length) {
+            char = 0;
+            line++;
+        }
+
+        setTimeout(draw, 35);
+    }
+    draw();
+}
+
+// --- DIBUJAR PETALO ---
+function drawPetal(cx, cy, r, color) {
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(Math.random() * Math.PI);
+    ctx.beginPath();
+    ctx.ellipse(0, 0, r * 1.2, r * 0.7, 0, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.globalAlpha = 0.75;
+    ctx.fill();
+    ctx.restore();
+}
+
+// --- PEONIA ANIMADA ---
+let petals = [];
+for (let i = 0; i < 120; i++) {
+    petals.push({
+        x: 300 + Math.random() * 80 - 40,
+        y: 360 + Math.random() * 80 - 40,
+        r: Math.random() * 18 + 8,
+        c: Math.random() < 0.6 ? random(pinks) : random(purples)
+    });
+}
+
+let petalIndex = 0;
+
+function animateFlower() {
+    if (petalIndex >= petals.length) {
+        drawStems();
+        typeText(textBottom, 300, 610, 20);
+        return;
+    }
+
+    const p = petals[petalIndex];
+    drawPetal(p.x, p.y, p.r, p.c);
+    petalIndex++;
+
+    setTimeout(animateFlower, 30);
+}
+
+// --- TALLOS ---
+function drawStems() {
+    ctx.strokeStyle = random(greens);
+    ctx.lineWidth = 6;
+
+    ctx.beginPath();
+    ctx.moveTo(300, 420);
+    ctx.lineTo(300, 650);
+    ctx.stroke();
+}
+
+// --- INICIO ---
+typeText(textTop, 300, 100, 24, () => {
+    setTimeout(animateFlower, 500);
+});
+</script>
+
+</body>
+</html>
