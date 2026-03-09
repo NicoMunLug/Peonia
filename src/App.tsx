@@ -6,7 +6,7 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-amber-50 flex items-center justify-center p-4">
       <div className="w-full max-w-6xl space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="h-96 md:h-full rounded-2xl overflow-hidden shadow-2xl bg-white/30 backdrop-blur-sm">
+          <div className="h-[700px] md:h-full rounded-2xl overflow-hidden shadow-2xl bg-white/30 backdrop-blur-sm">
             <FlowerModel />
           </div>
 
