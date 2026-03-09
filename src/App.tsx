@@ -18,25 +18,15 @@ function App() {
               <div className="flex items-center justify-center md:justify-start space-x-3">
                 <Heart className="w-8 h-8 text-pink-500 animate-heartbeat fill-pink-500" />
                 <h2 className="text-5xl md:text-6xl font-semibold text-pink-600">
-                  Te quiero
+                  Juanita Bonita
                 </h2>
                 <Heart className="w-8 h-8 text-pink-500 animate-heartbeat fill-pink-500" style={{ animationDelay: '0.3s' }} />
               </div>
             </div>
 
             <p className="text-xl text-gray-700 leading-relaxed">
-              Mira estas hermosas flores que girar para ti
-            </p>
-
-            <div className="flex justify-center md:justify-start space-x-2 pt-4">
-              {[...Array(5)].map((_, i) => (
-                <div
-                  key={i}
-                  className="w-2 h-2 bg-pink-400 rounded-full animate-bounce"
-                  style={{ animationDelay: `${i * 0.1}s` }}
-                />
-              ))}
-            </div>
+              Me dijiste que la peonía era tu flor favorita, así que quise hacer una para ti, una que durará para toda la vida aquí en internet, me dijiste que la Peonía es una flor con un significado muy bonito así que lo busque y dice que es una flor que simboliza el amor sincero, la belleza que nace del corazón y la profundidad de los sentimientos. Se abre con delicadeza, mostrando poco a poco toda su elegancia, como si guardara una esencia especial. Así que siempre que quieras volver podrás hacerlo y ver estas florecitas que están increibles y hermosas, además pueden girar jajaja:(.
+            </p>  
           </div>
         </div>
       </div>
