@@ -43,7 +43,6 @@ export default function FlowerModel() {
     scene.add(pointLight);
 
     const loader = new GLTFLoader();
-    loader.setPath(import.meta.env.BASE_URL);
     loader.load(
       `${import.meta.env.BASE_URL}scene.gltf`,
       (gltf: any) => {
